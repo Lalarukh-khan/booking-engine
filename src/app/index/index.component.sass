@@ -1,0 +1,345 @@
+/* Define standard variables and values for website */
+$bgcolor: #ffff 
+$navfontcolor: #3F4254 
+$navfontsize: 18px
+$navfont: 'Poppins'
+$navfontstyle: normal
+$navfontweight: 500
+$uppercase: uppercase
+$navpadd: 50px !important
+$navheight: 100px
+$navwidth: 100%
+$tnmrgn: 10px
+
+/* Use the variables */
+body
+  font-family: $navfont
+  font-style: $navfontstyle
+  margin: 0%
+
+body, html 
+  height: 100%
+  margin: 0
+
+
+nav 
+  font-size: $navfontsize
+  font-weight: $navfontweight
+  text-transform: $uppercase
+  padding-top: 20px !important
+  padding-bottom:20px !important
+
+.navbar-default .navbar-nav>li>a 
+    color: $navfontcolor
+
+.navbar-default 
+    // background-image: -webkit-linear-gradient(top,#ffff 0,#ffff 100%)
+    // background-image: -o-linear-gradient(top,#ffff 0,#ffff 100%)
+    // background-image: -webkit-gradient(linear,left top,left bottom,from(#fffffff),to(#ffff))
+    // background-image: linear-gradient(to bottom,#ffff 0,#ffff 100%)
+    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff', endColorstr='#ffff', GradientType=0)
+    // background-repeat: repeat-x
+    // filter: progid:DXImageTransform.Microsoft.gradient(enabled=false)
+    border-radius: 0px
+    -webkit-box-shadow: none
+    box-shadow: 0 4px 5px -2px #adadad
+    border-bottom: 0px
+    border-left: 0px 
+    border-right: 0px
+    width: 100%
+    position: fixed /* Stay in place */
+    z-index: 1 /* Sit on top */
+    left: 0
+    top: 0
+    background-color: rgb(0,0,0) /* Black fallback color */
+    background-color: rgba(0,0,0, 0.9) /* Black w/opacity */
+    overflow-x: hidden /* Disable horizontal scroll */
+    transition: 0.5s
+
+// .sm-menu
+//   z-index: 1
+//   overflow-x: hidden /* Disable horizontal scroll */
+//   transition: 0.5s
+
+.navbar>.container-fluid .navbar-brand 
+    margin-left: $tnmrgn
+
+.navbar-default .navbar-brand 
+    font-size: 38px
+    color: #3F4254
+
+.navbookbtn
+  background: #1BC5BD
+  font-weight: 500
+  font-size: 18px
+  text-align: center
+  padding: 0px 20px 
+  line-height: 30px
+
+.navdrpdnbtn
+  background: #3F4254
+  font-weight: 500
+  font-size: 18px
+  text-align: center
+  padding: 0px 20px 
+  line-height: 30px
+
+.lowerletter
+  text-transform: lowercase
+
+.navbkbtna
+  color: #FFFFFF !important
+
+.fontawesomesvg 
+  width: 1em
+  height: 1em
+  vertical-align: -.125em
+
+.filter-white
+  filter: invert(100%) sepia(0%) saturate(7480%) hue-rotate(119deg) brightness(100%) contrast(106%)
+
+img.indxbg 
+  min-height: 100%
+  min-width: 1024px
+  width: 100%
+  height: auto
+  position: fixed
+  top: 0
+  left: 0
+  opacity: 0.6
+
+.indxcentered 
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  color: #FFFFFF
+  background: #2b2b2a
+  font-size: 40px
+  font-weight: 600
+  padding: 0 10px
+  text-align: center
+
+.ppotrcls
+  display: none
+  position: absolute
+  top: 0%
+  left: 0%
+  width: 100%
+  height: 100%
+  background-color: black
+  z-index:1001
+  -moz-opacity: 0.8
+  opacity:0.9
+  filter: alpha(opacity=0.9)
+  
+.ppcntncls
+  display: none
+  position: absolute
+  top: 20%
+  left: 25%
+  width: 50%
+  height: 50%
+  padding: 16px
+  // border: 16px solid orange
+  background-color: transparent !important
+  z-index:1002
+  overflow: auto
+
+.modal
+  color: #3F4254
+  text-align: center
+
+// @media screen and (min-width: 768px) 
+.modal:before
+  display: inline-block
+  vertical-align: middle
+  content: " "
+  height: 100%
+
+.modal-dialog 
+  display: inline-block
+  text-align: left
+  vertical-align: middle
+
+.modal-backdrop
+  display: none
+
+.ppinnrtxt
+  text-align: center
+  font-size: 40px
+  color: #FFFFFF
+  font-weight: 500
+  text-transform: $uppercase
+
+#ppclsbtn
+  margin-left: 50px
+
+.pphr
+  border: 1px solid #1BC5BD
+  margin-top: 40px
+
+.ppcntntinpt
+  width: 53%
+  padding: 12px 20px
+  margin: 4px 0
+  box-sizing: border-box
+  border: 2px solid #FFFFFF
+  -webkit-transition: 0.5s
+  transition: 0.5s
+  outline: none
+  font-weight: 400
+  font-size: 16px
+  text-align: center
+  color: #3F4254
+  // border-radius: 5px
+
+// .ppcntntinpt:focus 
+//   border: 2px solid #1BC5BD
+ 
+.soft-codeon 
+  display: -ms-flexbox /* IE10 */
+  display: flex
+  justify-content: center
+  align-items: center
+  // width: 60%
+
+
+#ppicon 
+  padding:8px
+  background: #FFFFFF
+  color: #9c9b9a
+  width: 60px
+  height: 51px
+  text-align: center
+  font-size: 30px
+
+.ppcntntbtn
+  width: 62%
+  padding: 12px 20px
+  margin: 4px 0
+  box-sizing: border-box
+  border: 2px solid #1BC5BD
+  background-color: #1BC5BD
+  -webkit-transition: 0.5s
+  transition: 0.5s
+  outline: none
+  font-weight: 400
+  font-size: 20px
+  text-align: center
+  color: #FFFFFF
+
+.modalrmopt
+  color: #1BC5BD
+  font-size: 20px
+  margin-top: 20px
+  margin-bottom: 8px
+  border-bottom: 2px solid #1BC5BD
+
+.ppmodalguest
+  font-size: 15px
+  float: left
+
+.ppmodalnum
+  float: right
+  margin-right: 15px
+  width: 41%
+  text-align: center
+
+.addrmppbtn
+  font-size: 16px
+  float: right
+  width: 50%
+
+.addrmppbutton
+  text-align: center
+  color: #ffff
+  background-color: #1BC5BD
+  border: 1px solid #1BC5BD
+  padding-top: 6px
+  padding-bottom: 6px
+  padding-left: 10px
+  padding-right: 10px
+  
+// .ppmodalnumber
+//   border: 1px solid #1BC5BD
+//   border-radius: 50%
+//   background-color: #ffff
+//   display:inline-block
+//   width: 30px
+//   height: 30px
+
+
+.ppmodalicon
+  font-size: 13px
+  color: #1BC5BD
+  background: transparent !important
+  margin-left: -5px
+
+// .ppmodalnumber:hover
+//   background-color: #ffff
+//   text-decoration: none !important
+
+#ppmodalinpnumber
+  cursor: default
+
+#scppmodalinpnumber
+  cursor: default
+  // font-size: 20px
+  // border: none !important
+  // background: transparent !important
+  // width: 30%
+  // display:inline-block
+
+
+.modal-body
+  margin-bottom: 20%
+
+#textbox
+  margin-bottom: 20%
+
+.center
+    width:50%
+    margin:-7% auto 0 auto
+    display:inline-block
+    text-align:center
+
+.ppmodaliconadd
+  font-size: 13px
+  color: #ffff
+  background: transparent !important
+
+.addrmbtncls
+  color: #ffff
+  text-decoration: none !important
+  
+@media screen and (max-width: 900px) 
+  img.indxbg 
+    left: 50%
+    margin-left: -512px 
+
+  .ppcntncls
+    left: 3%
+    width: 100%
+    height: 100%
+    padding: 0px
+
+  .ppinnrtxt
+    font-size: 20px
+
+  #ppclsbtn
+    margin-left: 10px
+
+  .pphr
+    margin-top: 20px
+  
+  .center
+    margin: 0 auto 0 auto
+  
+  .ppmodalguest
+    margin: 2% 0
+
+
+
+
+

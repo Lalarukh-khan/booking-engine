@@ -1,0 +1,193 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+# Author: Ghulam Mujtaba
+# Email: GhulamMujtabaKhan@outlook.com
+
+trigger:
+- dev
+- stagging
+- master
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'revroo-acr-svc-conn'
+  imageRepositoryProd: 'booking-engine-prod'
+  imageRepositoryStagging: 'booking-engine-stagging'
+  imageRepositoryDev: 'booking-engine-dev'
+  containerRegistry: 'revroo.azurecr.io'
+  dockerfilePath: '**/Dockerfile'
+  tag: '$(Build.BuildId)'
+  vmImageName: 'ubuntu-latest'
+stages:
+- stage: Prod
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  displayName: Build and push image to prod
+  jobs:
+  - job: Build
+    displayName: Build Prod App Image
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: LogIn to ACR
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        command: 'login'
+    - task: CmdLine@2
+      displayName: Dumping sed
+      inputs:
+        script: |
+          sed -i 's/__stage_suffix__/prod/g' default.conf
+          sed -i 's#apiUrl.*#apiUrl: "$(Frontend_Url_Prod)/api/v1",#g' src/environments/environment.prod.ts
+          sed -i 's#apiUrl.*#apiUrl: "$(Frontend_Url_Prod)/api/v1",#g' src/environments/environment.ts
+    - task: Docker@2
+      displayName: Build App Image
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepositoryProd)'
+        command: 'build'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
+    - task: CmdLine@2
+      displayName: Starting Test Upstream Srvr
+      inputs:
+        script: |
+          sudo docker network create test_net
+          sudo docker run -d --name svc-backend-prod --net test_net -p 80:80 nginx
+    - task: Bash@3
+      displayName: Checking site warmup
+      inputs:
+        filePath: './warmupCheck.sh'
+        arguments: 'revroo.azurecr.io/$(imageRepositoryProd):$(tag) 8080 80'
+    - task: Docker@2
+      displayName: Push Image to ACR
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepositoryProd)'
+        command: 'push'
+        tags: '$(tag)'
+    - task: Kubernetes@1
+      displayName: 'Rolling Updates'
+      inputs:
+        kubernetesServiceEndpoint: 'revroo-aks-svc-conn-dev'
+        namespace: prod
+        command: set
+        arguments: 'image deployment/dep-booking-engine-prod cntnr-booking-engine-prod=revroo.azurecr.io/booking-engine-prod:"$(Build.BuildId)"'
+
+# ------------------ Staging Stage ----------------------------------------
+- stage: Staging
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/stagging')
+  displayName: Build and push image to stagging
+  jobs:
+  - job: Build
+    displayName: Build Stagging App Image
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: LogIn to ACR
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        command: 'login'
+    - task: CmdLine@2
+      displayName: Dumping sed
+      inputs:
+        script: |
+          sed -i 's/__stage_suffix__/st/g' default.conf
+          sed -i 's#apiUrl.*#apiUrl: "$(Frontend_Url_Stagging)/api/v1",#g' src/environments/environment.prod.ts
+          sed -i 's#apiUrl.*#apiUrl: "$(Frontend_Url_Stagging)/api/v1",#g' src/environments/environment.ts
+    - task: Docker@2
+      displayName: Build App Image
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepositoryStagging)'
+        command: 'build'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
+    - task: CmdLine@2
+      displayName: Starting Test Upstream Srvr
+      inputs:
+        script: |
+          sudo docker network create test_net
+          sudo docker run -d --name svc-backend-st --net test_net -p 80:80 nginx
+    - task: Bash@3
+      displayName: Checking site warmup
+      inputs:
+        filePath: './warmupCheck.sh'
+        arguments: 'revroo.azurecr.io/$(imageRepositoryStagging):$(tag) 8080 80'
+    - task: Docker@2
+      displayName: Push Image to ACR
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepositoryStagging)'
+        command: 'push'
+        tags: '$(tag)'
+    - task: Kubernetes@1
+      displayName: 'Rolling Updates'
+      inputs:
+        kubernetesServiceEndpoint: 'revroo-aks-svc-conn-dev'
+        namespace: stagging
+        command: set
+        arguments: 'image deployment/dep-booking-engine-st cntnr-booking-engine-st=revroo.azurecr.io/booking-engine-stagging:"$(Build.BuildId)"'
+
+
+#----------------- Dev Stage ---------------------------------------
+
+- stage: Dev
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/dev')
+  displayName: Build and push image to dev
+  jobs:
+  - job: Build
+    displayName: Build Dev App Image
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: LogIn to ACR
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        command: 'login'
+        #    - task: CmdLine@2
+        #      displayName: Dumping sed
+        #      inputs:
+        #        script: |
+        #  #sed -i 's/__stage_suffix__/dev/g' default.conf
+        #  #sed -i 's#apiUrl.*#apiUrl: "$(Frontend_Url_Dev)/api/v1",#g' src/environments/environment.prod.ts
+        #  #sed -i 's#apiUrl.*#apiUrl: "$(Frontend_Url_Dev)/api/v1",#g' src/environments/environment.ts
+    - task: Docker@2
+      displayName: Build App Image
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepositoryDev)'
+        command: 'build'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
+        #    - task: CmdLine@2
+        #      displayName: Starting Test Upstream Srvr
+        #      inputs:
+        #script: |
+        #  sudo docker network create test_net
+        #  sudo docker run -d --name svc-booking-engine-dev --net test_net -p 80:80 nginx
+    - task: Bash@3
+      displayName: Checking site warmup
+      inputs:
+        filePath: './warmupCheck.sh'
+        arguments: 'revroo.azurecr.io/$(imageRepositoryDev):$(tag) 8080 80'
+    - task: Docker@2
+      displayName: Push Image to ACR
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepositoryDev)'
+        command: 'push'
+        tags: '$(tag)'
+    - task: Kubernetes@1
+      displayName: 'Rolling Updates'
+      inputs:
+        kubernetesServiceEndpoint: 'revroo-aks-svc-conn-dev'
+        namespace: dev
+        command: set
+        arguments: 'image deployment/dep-booking-engine-dev cntnr-booking-engine-dev=revroo.azurecr.io/booking-engine-dev:"$(Build.BuildId)"'

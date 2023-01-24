@@ -1,0 +1,128 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+	  <div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		  <span class="sr-only">Toggle navigation</span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">Logo</a>
+	  </div>
+  
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<!-- <ul class="nav navbar-nav">
+		  <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+		  <li><a href="#">Link</a></li>
+		  <li class="dropdown dmenu">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+			<ul class="dropdown-menu sm-menu">
+			  <li><a href="#">Action</a></li>
+			  <li><a href="#">Another action</a></li>
+			  <li><a href="#">Something else here</a></li>
+			  <li role="separator" class="divider"></li>
+			  <li><a href="#">Separated link</a></li>
+			  <li role="separator" class="divider"></li>
+			  <li><a href="#">One more separated link</a></li>
+			</ul>
+		  </li>
+		</ul>
+		<form class="navbar-form navbar-left">
+		  <div class="form-group">
+			<input type="text" class="form-control" placeholder="Search">
+		  </div>
+		  <button type="submit" class="btn btn-default">Submit</button>
+		</form> -->
+		<ul class="nav navbar-nav navbar-right">
+		  <li><a href="#">Rooms</a></li>
+		  <li><a href="#">Services</a></li>
+		  <li><a href="#">Location</a></li>
+		  <li><a href="#">Offers</a></li>
+		  <li><a href="#">Lounge-Bar</a></li>
+		  <li class="navbookbtn" id="navbookpopup"><a href = "javascript:void(0)" onclick = "document.getElementById('ppcntntid').style.display='block';document.getElementById('ppotrid').style.display='block'" class="navbkbtna">Book</a></li>
+		  <li class="dropdown dmenu" class="navdrpdnbtn">
+			<a href="#" class="dropdown-toggle navbkbtna lowerletter" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><svg class='fontawesomesvg filter-white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 21 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"/></svg>&nbsp; en <span class="caret"></span></a>
+			<!-- <ul class="dropdown-menu sm-menu">
+			  <li><a href="#">fr</a></li>
+			  <li><a href="#">It</a></li>
+			  <li role="separator" class="divider"></li>
+			  <li><a href="#">sp</a></li>
+			</ul> -->
+		  </li>
+		</ul>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+  </nav>  
+<div>
+	<img src="../../assets/images/a.jpeg" alt="" class="indxbg">
+	<div class="indxcentered">Booking Engine</div>
+</div>
+
+<div id="ppcntntid" class="ppcntncls ppinnrtxt">
+	Enter Dates and see prices <a href = "javascript:void(0)" onclick = "document.getElementById('ppcntntid').style.display='none';document.getElementById('ppotrid').style.display='none'"><i class="fa fa-close ppinnrtxt" id="ppclsbtn"></i></a>
+<hr class="pphr">
+<!-- <input type="text" name="daterange" class="ppcntntinpt"/> -->
+	<div class="soft-codeon">
+		<i class="fa fa-calendar" id="ppicon" aria-hidden="true"></i>
+		<input type="text" name="daterange" class="ppcntntinpt"/>
+	</div>
+	<!-- <button type="button" class="ppcntntinpt" data-toggle="modal" data-target="#myModal">Open Small Modal</button> -->
+	<div class="soft-codeon">
+		<i class="fa fa-users" id="ppicon" aria-hidden="true"></i>
+		<input type="text" class="ppcntntinpt ppmodalinpnumber" data-toggle="modal" data-target="#myModal" placeholder="1 Room 2 Guests"/>
+	</div>
+		<!-- Modal -->
+		<div class="modal" id="myModal" role="dialog" data-backdrop="false">
+			<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<!-- <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Modal Header</h4>
+				</div> -->
+				<div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<div class="pproomcntnt">
+					<div>
+					<p class="modalrmopt">Room 1</p>
+					<div id="textbox">
+						<p class="ppmodalguest">Guest 1</p>
+						<div class="ppmodalnum center">
+							<button class="btn ppmodalnumber" data-action="minus" data-target="ppmodalinpnumber" style="border: 1px solid #1BC5BD; border-radius: 50%; background-color: #ffff;display:inline-block;width: 30px;height: 30px;">
+								<span class="glyphicon glyphicon-minus ppmodalicon"></span>
+							</button>
+							<input name="pptotalrooms[]" type="text" value="1" class="form-control" id="ppmodalinpnumber" style="font-size: 20px; border: none !important; background: transparent !important; width: 30%;display:inline-block;" disabled>
+							<button class="btn ppmodalnumber" data-action="plus" data-target="ppmodalinpnumber" style="border: 1px solid #1BC5BD; border-radius: 50%; background-color: #ffff;display:inline-block;width: 30px;height: 30px;">
+								<span class="glyphicon glyphicon-plus ppmodalicon"></span>
+							</button>
+						</div>
+					</div>
+					</div>
+				</div>
+					<!-- <div class="field_wrapper">
+						<div>
+							<input type="text" name="field_name[]" value=""/>
+							<a href="javascript:void(0);" class="add_button" title="Add field">Add Input</a>
+						</div>
+					</div> -->
+					<div class="addrmppbtn">
+						<button class="addrmppbutton">
+							<span class="glyphicon glyphicon-plus ppmodaliconadd"></span>
+							<a href="javascript:void(0);" class="addrmbtncls">&nbsp;Add Room</a>
+						</button>
+					</div>
+				</div>
+				<!-- <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> -->
+			</div>
+			</div>
+		</div>
+		<div style="display: none;"><div class="rmvaddedroom"><div style="border-bottom: 2px solid #1BC5BD;margin-bottom:3%;"><div class="row"><div class="col-lg-5 col-md-5 col-sm-5 col-5"><p style="color: #1BC5BD;font-size: 20px;margin-top: 20px;margin-bottom: 8px;">Room 2</p></div><div class="col-lg-3 col-md-3 col-sm-3 col-3"></div><div class="col-lg-4 col-md-4 col-sm-4 col-4"><a href="javascript:void(0);" class="rmvrmsection" style="font-size:14px; color:#E41414;"> Remove </a></div></div></div><div id="textbox"><p class="ppmodalguest">Guest 1</p><div class="ppmodalnum center"><button class="btn scppmodalnumber" data-action="scminus" data-target="scppmodalinpnumber" style="border: 1px solid #1BC5BD; border-radius: 50%; background-color: #ffff;display:inline-block;width: 30px;height: 30px;"><span class="glyphicon glyphicon-minus ppmodalicon"></span></button><input name="pptotalrooms[]" type="text" value="1" class="form-control" id="scppmodalinpnumber" style="font-size: 20px; border: none !important; background: transparent !important; width: 30%;display:inline-block;" disabled><button class="btn scppmodalnumber" data-action="scplus" data-target="scppmodalinpnumber" style="border: 1px solid #1BC5BD; border-radius: 50%; background-color: #ffff;display:inline-block;width: 30px;height: 30px;"><span class="glyphicon glyphicon-plus ppmodalicon"></span></button></div></div></div></div>
+	<!-- Small modal -->
+
+	<button class="ppcntntbtn">Book</button>
+</div>
+<div id="ppotrid" class="ppotrcls"></div>
+
